@@ -23,7 +23,7 @@ class StockPickingType(models.Model):
     )
 
     disable_backorder_only_on_picking_validation = fields.Boolean(_('Disable Backorder only on picking validation'),
-        help=_("Checking this option with avoid backorder other creating if it is being called inside stock.picking action_done method")
+        help=_("Checking this option will avoid backorder creation only if it is being called inside stock.picking action_done method")
     )
 
     @api.onchange('backorder_strategy')
