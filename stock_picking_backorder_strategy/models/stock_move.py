@@ -15,5 +15,7 @@ class StockMove(models.Model):
     def _split(self, qty, restrict_partner_id=False):
         if self.picking_id.picking_type_id.disable_move_lines_split:
             return False
-        else:
-            return super(StockMove, self)._split(qty, restrict_partner_id=restrict_partner_id)
+        return super(StockMove, self)._split(
+            qty,
+            restrict_partner_id=restrict_partner_id
+        )

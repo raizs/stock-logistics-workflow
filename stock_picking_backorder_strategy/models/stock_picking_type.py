@@ -19,11 +19,15 @@ class StockPickingType(models.Model):
     disable_move_lines_split = fields.Boolean(_('Disable Move Split'),
         help=_("Checking this option will prevent stock moves from being \
         splited in cases where quantity done is smaller than expected")
-        #This avoids the creation of stock moves that we create only to cancel afterwords
+        #This avoids the creation of stock moves
+        #that we create only to cancel afterwords
     )
 
-    disable_backorder_only_on_picking_validation = fields.Boolean(_('Disable Backorder only on picking validation'),
-        help=_("Checking this option will avoid backorder creation only if it is being called inside stock.picking action_done method")
+    disable_backorder_only_on_picking_validation = fields.Boolean(
+        _('Disable Backorder only on picking validation'),
+        help=_("Checking this option will avoid backorder creation only if it is being\
+            called inside stock.picking action_done method"
+        )
     )
 
     @api.onchange('backorder_strategy')
@@ -31,5 +35,3 @@ class StockPickingType(models.Model):
         for record in self:
             record.disable_move_lines_split = False
             record.disable_backorder_only_on_picking_validation = False
-
-
